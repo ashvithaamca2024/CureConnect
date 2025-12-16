@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
+import { doctors } from "../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
@@ -19,6 +19,7 @@ const AppContextProvider = (props) => {
       const { data } = await axios.get(backendUrl + "/api/doctor/list");
       if (data.success) {
         setDoctors(data.doctors);
+        // console.log(data)
       } else {
         toast.error(data.message);
       }
@@ -43,7 +44,8 @@ const AppContextProvider = (props) => {
     }
   };
   const value = {
-    doctors, getDoctorsData,
+    doctors,
+    getDoctorsData,
     currencySymbol,
     token,
     setToken,
@@ -59,11 +61,13 @@ const AppContextProvider = (props) => {
     if (token) {
       loadUserProfileData();
     } else {
-      setUserData(false)
+      setUserData(false);
     }
   }, [token]);
   return (
-    <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
+    <AppContext.Provider value={value}>
+      {props.children}
+    </AppContext.Provider>
   );
 };
 

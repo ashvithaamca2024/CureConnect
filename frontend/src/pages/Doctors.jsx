@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+// import speciality from "../../assets.js";
 
 const Doctors = () => {
   const { speciality } = useParams();
@@ -11,7 +12,8 @@ const Doctors = () => {
 
   const applyFilter = () => {
     if (speciality) {
-      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
+      setFilterDoc(doctors.filter(doc => doc.speciality === speciality));
+     
     } else {
       setFilterDoc(doctors);
     }
@@ -22,6 +24,7 @@ const Doctors = () => {
   }, [doctors, speciality]);
   return (
     <div>
+      {/* LEft side Start */}
       <p className="text-gray-600">Browse through the doctors specialist.</p>
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         <button
@@ -106,12 +109,13 @@ const Doctors = () => {
                 : navigate("/doctors/Gastroenterologist")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "" ? "bg-indigo-100 text-black" : ""
+              speciality === "Gastroenterologist" ? "bg-indigo-100 text-black" : ""
             }`}
           >
             Gastroenterologist
           </p>
         </div>
+        {/* Right side */}
         <div className="w-full grid grid-cols-auto gap-4 gap-y-6">
           {filterDoc.map((item, index) => (
             <div

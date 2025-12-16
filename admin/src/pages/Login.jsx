@@ -11,8 +11,8 @@ const Login = () => {
   const { setAToken, backendUrl } = useContext(AdminContext);
   const { setDToken } = useContext(DoctorContext);
 
-  const onSubmitHandler = async () => {
-    event.preventDefault();
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
     try {
       if (state === "Admin") {
         const { data } = await axios.post(backendUrl + "/api/admin/login", {
@@ -38,7 +38,9 @@ const Login = () => {
           toast.error(data.message);
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Login failed");
+    }
   };
 
   return (

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { assets } from "../assets/assets";
-import RelatedDoctors from "../components/RelatedDoctors";
+import { assets } from "../assets/assets.js";
+import RelatedDoctors from "../components/RelatedDoctors.jsx";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -18,11 +18,13 @@ const Appointment = () => {
   const [docSlots, setDocSlots] = useState([]);
   const [slotIndex, setSlotIndex] = useState(0);
   const [slotTime, setSlotTime] = useState("");
+
+  // Fetching Doc Info
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
   };
-
+// For the slots
   const getAvailableSlots = async () => {
     setDocSlots([]);
 
@@ -117,11 +119,12 @@ const Appointment = () => {
       toast.error(error.message);
     }
   };
-
+// usestate of docInfo
   useEffect(() => {
     fetchDocInfo();
   }, [doctors, docId]);
 
+  // usestate of slots
   useEffect(() => {
     getAvailableSlots();
   }, [docInfo]);
@@ -130,10 +133,10 @@ const Appointment = () => {
     console.log(docSlots);
   }, [docSlots]);
 
-  return (
-    docInfo && (
+  return docInfo && (
       <div>
         {/* ------- doctor details------ */}
+        {/* Left Side of picture */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div>
             <img
@@ -142,6 +145,7 @@ const Appointment = () => {
               alt=""
             />
           </div>
+          {/* Right side of Content */}
           <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
             {/* ----------------- Doc Info:name,degree, experience----------------- */}
             <p className="flex items-center gap-2 text-2xl font-medium text-gray-900">
@@ -221,7 +225,7 @@ const Appointment = () => {
         <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
       </div>
     )
-  );
+  
 };
 
 export default Appointment;
