@@ -11,8 +11,8 @@ const Login = () => {
   const { setAToken, backendUrl } = useContext(AdminContext);
   const { setDToken } = useContext(DoctorContext);
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
+  const onSubmitHandler = async () => {
+    event.preventDefault();
     try {
       if (state === "Admin") {
         const { data } = await axios.post(backendUrl + "/api/admin/login", {
