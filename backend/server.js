@@ -25,12 +25,12 @@ connectCloudinary();
 
 
 // if(process.env.NODE_ENV !== "production"){
- app.use(
+app.use(
   cors({
     origin: [
-     "https://cureconnect-backend-u3oa.onrender.com",
-      "http://localhost:5173", // user frontend
-      "http://localhost:5174", // admin frontend
+      "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
+      "http://localhost:5173", // user frontend (local)
+      "http://localhost:5174", // admin frontend (local)
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "aToken"],
