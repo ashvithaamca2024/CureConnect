@@ -34,7 +34,11 @@ app.use(
       "http://localhost:5174", // admin frontend (local)
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "aToken"],
+    allowedHeaders: [ "Content-Type",
+      "Authorization",
+      "token",     
+      "aToken",
+      "dToken"],
     credentials: true,
   })
 );
