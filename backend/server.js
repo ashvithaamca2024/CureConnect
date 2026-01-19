@@ -28,6 +28,7 @@ connectCloudinary();
  app.use(
   cors({
     origin: [
+     "https://cureconnect-backend-u3oa.onrender.com",
       "http://localhost:5173", // user frontend
       "http://localhost:5174", // admin frontend
     ],
