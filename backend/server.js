@@ -28,6 +28,7 @@ connectCloudinary();
 app.use(
   cors({
     origin: [
+      "https://cureconnect-frontend-w2sq.onrender.com", 
       "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
       "http://localhost:5173", // user frontend (local)
       "http://localhost:5174", // admin frontend (local)
