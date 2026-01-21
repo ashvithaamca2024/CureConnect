@@ -20,8 +20,6 @@ const __dirname = path.resolve();
 connectDB();
 connectCloudinary();
 
-import cors from "cors";
-
 const allowedOrigins = [
   "https://cureconect.netlify.app",
   "http://localhost:5173",
