@@ -23,18 +23,32 @@ const __dirname = path.resolve()
 connectDB();
 connectCloudinary();
 
+const allowedOrigins = [
+  "https://cureconect.netlify.app/",
+  "http://localhost:5173", // user frontend (local)
+      "http://localhost:5174", // admin frontend (local)
+];
 
 
 // if(process.env.NODE_ENV !== "production"){
 app.use(
   cors({
+
     origin: [
-      "https://cureconect.netlify.app/"
-      "https://cureconnect-frontend-w2sq.onrender.com", 
-      "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
+      "https://cureconect.netlify.app/",
+      // "https://cureconnect-frontend-w2sq.onrender.com", 
+      // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
       "http://localhost:5173", // user frontend (local)
       "http://localhost:5174", // admin frontend (local)
     ],
+
+    origin: allowedOrigins,
+      // "https://cureconnect-frontend-w2sq.onrender.com", 
+      // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
+      // "http://localhost:5173", // user frontend (local)
+      // "http://localhost:5174", // admin frontend (local)
+    
+
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [ "Content-Type",
       "Authorization",
@@ -47,7 +61,7 @@ app.use(
 // }
 
 // Allow preflight requests
-//app.options("*", cors());
+app.options("*", cors());
 const corsOptions = {
   origin: [
     "http://localhost:5173", // User frontend
