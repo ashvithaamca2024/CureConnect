@@ -38,6 +38,10 @@ const Navbar = () => {
           <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
         </NavLink>
       </ul>
+
+
+
+      {/* This is right side of page */}
       <div className="flex items-center gap-4">
         {/* ADMIN LOGIN BUTTON */}
         <a
@@ -56,13 +60,13 @@ const Navbar = () => {
             <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">
               <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
                 <p
-                  onClick={() => navigate("my-profile")}
+                  onClick={() => navigate('/my-profile')}
                   className="hover:text-black cursor-pointer"
                 >
                   My Profile
                 </p>
                 <p
-                  onClick={() => navigate("my-appointments")}
+                  onClick={() => navigate('/my-appointments')}
                   className="hover:text-black cursor-pointer"
                 >
                   My Appointments
@@ -75,7 +79,7 @@ const Navbar = () => {
           </div>
         ) : (
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => navigate('/login')}
             className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block"
           >
             Create Account

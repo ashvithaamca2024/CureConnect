@@ -11,11 +11,11 @@ const Contact = () => {
       <img className='w-full md:max-w-[360px]' src={assets.contact_image} alt="" />
       <div className='flex flex-col justify-center items-start gap-6'>
         <p className='font-semibold text-lg text-gray-600'>Our OFFICE</p>
-        <p className='text-gray-500'>54709 Willms Station <br /> Suite 350, Washington, USA</p>
-        <p className='text-gray-500'>+91 7338147963 <br />cureconnect@gmail.com</p>
+        <p className='text-gray-500'>12th Block Church Street <br /> Banagalore, Karnataka, India</p>
+        <p className='text-gray-500 hover:text-black'><a href="tel:+917338147963">+91 7338147963</a> <br /><a href="mailto:ashvithaamca2024@gmail.com">cureconnect@gmail.com</a></p>
         <p className='font-semibold text-lg text-gray-600'>Careers at CureConnect</p>
         <p className='text-gray-500'>Learn more about our teams and job openings.</p>
-        <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
+        <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500' onClick={() => window.open('https://www.naukri.com/', '_blank')}>Explore Jobs</button>
       </div>
 
 
