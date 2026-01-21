@@ -29,6 +29,7 @@ connectCloudinary();
 app.use(
   cors({
     origin: [
+      "https://cureconect.netlify.app/"
       "https://cureconnect-frontend-w2sq.onrender.com", 
       "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
       "http://localhost:5173", // user frontend (local)
