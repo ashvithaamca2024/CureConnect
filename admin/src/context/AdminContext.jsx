@@ -11,7 +11,7 @@ const AdminContextProvider = (props) => {
   const [dashData, setDashData] = useState(false)
 
 
-  const backendUrl = "https://cureconnect-backend-u3oa.onrender.com";
+  const backendUrl = "https://cureconnect-1-z6xj.onrender.com";
 
   const getAllDoctors = async () => {
     try {

@@ -10,60 +10,58 @@ import adminRouter from "./routes/adminRoute.js";
 import doctorRouter from "./routes/doctorRoute.js";
 import userRouter from "./routes/userRoute.js";
 
-
-
 // app config
 
 const app = express();
 const port = process.env.PORT || 4000;
-const __dirname = path.resolve()
-
+const __dirname = path.resolve();
 
 // Database and cloud
 connectDB();
 connectCloudinary();
 
-const allowedOrigins = [
-  "https://cureconect.netlify.app/",
-  "http://localhost:5173", // user frontend (local)
-      "http://localhost:5174", // admin frontend (local)
-];
+// const allowedOrigins = [
+//   "https://cureconect.netlify.app/",
+//   "http://localhost:5173", // user frontend (local)
+//   "http://localhost:5174", // admin frontend (local)
+// ];
 
+// // if(process.env.NODE_ENV !== "production"){
+// app.use(
+//   cors({
+//     origin: [
+//       "https://cureconect.netlify.app/",
+//       "https://cureconnect-1-z6xj.onrender.com",
+//       // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
+//       "http://localhost:5173", // user frontend (local)
+//       "http://localhost:5174", // admin frontend (local)
+//     ],
 
-// if(process.env.NODE_ENV !== "production"){
-app.use(
-  cors({
+//     origin: allowedOrigins,
+//     // "https://cureconnect-frontend-w2sq.onrender.com",
+//     // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
+//     // "http://localhost:5173", // user frontend (local)
+//     // "http://localhost:5174", // admin frontend (local)
 
-    origin: [
-      "https://cureconect.netlify.app/",
-      // "https://cureconnect-frontend-w2sq.onrender.com", 
-      // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
-      "http://localhost:5173", // user frontend (local)
-      "http://localhost:5174", // admin frontend (local)
-    ],
-
-    origin: allowedOrigins,
-      // "https://cureconnect-frontend-w2sq.onrender.com", 
-      // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
-      // "http://localhost:5173", // user frontend (local)
-      // "http://localhost:5174", // admin frontend (local)
-    
-
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: [ "Content-Type",
-      "Authorization",
-      "token",     
-      "aToken",
-      "dToken"],
-    credentials: true,
-  })
-);
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: [
+//       "Content-Type",
+//       "Authorization",
+//       "token",
+//       "aToken",
+//       "dToken",
+//     ],
+//     credentials: true,
+//   }),
+// );
 // }
 
 // Allow preflight requests
 app.options("*", cors());
 const corsOptions = {
   origin: [
+    "https://cureconect.netlify.app/",
+    "https://cureconnect-1-z6xj.onrender.com",
     "http://localhost:5173", // User frontend
     "http://localhost:5174", // Admin frontend
   ],
@@ -78,15 +76,8 @@ const corsOptions = {
   credentials: true,
 };
 
-
-  app.use(cors(corsOptions));
-  app.options("*", cors(corsOptions));
-
-
-
-
-
-
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // middleware
 app.use(express.json());
@@ -97,34 +88,22 @@ app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);
 app.use("/api/user", userRouter);
 
-
 if (process.env.NODE_ENV === "production") {
-
   // -------- USER FRONTEND --------
-  app.use(
-    express.static(path.join(__dirname, "../frontend/dist"))
-  );
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   // -------- ADMIN FRONTEND --------
-  app.use(
-    "/admin",
-    express.static(path.join(__dirname, "../admin/dist"))
-  );
+  app.use("/admin", express.static(path.join(__dirname, "../admin/dist")));
 
   // Admin React Router fallback
   app.get("/admin/*", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../admin", "dist", "index.html")
-    );
+    res.sendFile(path.join(__dirname, "../admin", "dist", "index.html"));
   });
 
   app.get("*", (req, res) => {
-    res.sendFile(
-      path.join(__dirname, "../frontend", "dist", "index.html")
-    );
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
-
 
 app.get("/", (req, res) => {
   res.send("API working");
