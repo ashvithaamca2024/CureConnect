@@ -20,64 +20,39 @@ const __dirname = path.resolve();
 connectDB();
 connectCloudinary();
 
-// const allowedOrigins = [
-//   "https://cureconect.netlify.app/",
-//   "http://localhost:5173", // user frontend (local)
-//   "http://localhost:5174", // admin frontend (local)
-// ];
+import cors from "cors";
 
-// // if(process.env.NODE_ENV !== "production"){
-// app.use(
-//   cors({
-//     origin: [
-//       "https://cureconect.netlify.app/",
-//       "https://cureconnect-1-z6xj.onrender.com",
-//       // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
-//       "http://localhost:5173", // user frontend (local)
-//       "http://localhost:5174", // admin frontend (local)
-//     ],
+const allowedOrigins = [
+  "https://cureconect.netlify.app",
+  "http://localhost:5173",
+  "http://localhost:5174",
+];
 
-//     origin: allowedOrigins,
-//     // "https://cureconnect-frontend-w2sq.onrender.com",
-//     // "https://cureconnect-yopl.onrender.com", // user + admin frontend (prod)
-//     // "http://localhost:5173", // user frontend (local)
-//     // "http://localhost:5174", // admin frontend (local)
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow Postman, Render health checks
 
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: [
-//       "Content-Type",
-//       "Authorization",
-//       "token",
-//       "aToken",
-//       "dToken",
-//     ],
-//     credentials: true,
-//   }),
-// );
-// }
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "token",
+      "aToken",
+      "dToken",
+    ],
+  })
+);
 
-// Allow preflight requests
+// Preflight
 app.options("*", cors());
-const corsOptions = {
-  origin: [
-    "https://cureconect.netlify.app/",
-    "https://cureconnect-1-z6xj.onrender.com",
-    "http://localhost:5173", // User frontend
-    "http://localhost:5174", // Admin frontend
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "token",
-    "aToken",
-    "dToken",
-  ],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
 
 // middleware
 app.use(express.json());
