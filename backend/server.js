@@ -22,6 +22,7 @@ connectCloudinary();
 
 const allowedOrigins = [
   "https://cureconect.netlify.app",
+  "https://cureconnect-yopl.onrender.com/admin/",
   "http://localhost:5173",
   "http://localhost:5174",
 ];
