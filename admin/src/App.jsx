@@ -1,19 +1,19 @@
 import React, { useContext } from 'react'
-import Login from './pages/Login'
+import Login from "./Page/Login"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { AdminContext } from './context/AdminContext';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/Admin/Dashboard';
-import AllApointments from './pages/Admin/AllApointments';
-import AddDoctor from './pages/Admin/AddDoctor';
-import DoctorsList from './pages/Admin/DoctorsList';
+import Dashboard from './Page/Admin/Dashboard';
+import AllApointments from './Page/Admin/AllApointments';
+import AddDoctor from './Page/Admin/AddDoctor';
+import DoctorsList from './Page/Admin/DoctorsList';
 import { DoctorContext } from './context/DoctorContext';
-import DoctorDashboard from './pages/Doctor/DoctorDashboard';
-import DoctorAppointment from './pages/Doctor/DoctorAppointment';
-import DoctorProfile from './pages/Doctor/DoctorProfile';
+import DoctorDashboard from './Page/Doctor/DoctorDashboard';
+import DoctorAppointment from './Page/Doctor/DoctorAppointment';
+import DoctorProfile from './Page/Doctor/DoctorProfile';
 const App = () => {
   const {aToken} = useContext(AdminContext)
   const {dToken}= useContext(DoctorContext)

@@ -1,20 +1,21 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import path from "path";
+
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
+
 import adminRouter from "./routes/adminRoute.js";
 import doctorRouter from "./routes/doctorRoute.js";
 import userRouter from "./routes/userRoute.js";
-import path from "path";
+
 
 
 // app config
 
 const app = express();
 const port = process.env.PORT || 4000;
-
-
 const __dirname = path.resolve()
 
 
@@ -46,6 +47,27 @@ app.use(
 
 // Allow preflight requests
 //app.options("*", cors());
+const corsOptions = {
+  origin: [
+    "http://localhost:5173", // User frontend
+    "http://localhost:5174", // Admin frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "token",
+    "aToken",
+    "dToken",
+  ],
+  credentials: true,
+};
+
+
+  app.use(cors(corsOptions));
+  app.options("*", cors(corsOptions));
+
+
 
 
 
