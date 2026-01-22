@@ -22,13 +22,12 @@ connectCloudinary();
 
 const allowedOrigins = [
   "https://cureconect.netlify.app",
-  "https://cureconnect-yopl.onrender.com/admin/",
+  "https://cureconect-admin.netlify.app",
   "http://localhost:5173",
   "http://localhost:5174",
 ];
 
-app.use(
-  cors({
+const corsOptions = {
     origin: function (origin, callback) {
       if (!origin) return callback(null, true); // allow Postman, Render health checks
 
@@ -47,14 +46,21 @@ app.use(
       "aToken",
       "dToken",
     ],
-  })
-);
+  }
 
 // Preflight
-app.options("*", cors());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // middleware
 app.use(express.json());
+
+// DEBUG: log request origin
+app.use((req, res, next) => {
+  console.log("REQUEST ORIGIN:", req.headers.origin);
+  next();
+});
+
 
 // api endpoint
 app.use("/api/admin", adminRouter);
