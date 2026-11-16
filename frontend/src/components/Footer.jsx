@@ -29,7 +29,7 @@ const Footer = () => {
               <Link to="/contact" className="hover:text-black">Contact Us</Link>
             </li>
             <li onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              <Link to="/privacy-policy" className="hover:text-black">
+              <Link to="/privacy" className="hover:text-black">
                 Privacy Policy
               </Link>
             </li>
@@ -40,8 +40,8 @@ const Footer = () => {
         <div>
           <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
           <ul className="flex flex-col gap-2 text-gray-600">
-            <li><a href="tel:+917338147963" className="hover:text-black">+91 7338147963</a></li>
-            <li><a href="mailto:ashvithaamca2024@gmail.com" className="hover:text-black">cureconnect@gmail.com</a></li>
+            <li><a href="tel:+918123591346" className="hover:text-black">+91 8123591346</a></li>
+            <li><a href="mailto:cureconnect@gmail.com" className="hover:text-black">cureconnect@gmail.com</a></li>
           </ul>
         </div>
 
