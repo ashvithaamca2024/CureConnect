@@ -6,7 +6,7 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
   const currencySymbol = "₹";
-  const backendUrl = "https://cureconnect-1-z6xj.onrender.com";
+  const backendUrl = " https://cureconnect-backend-opkp.onrender.com";
 
   const [doctors, setDoctors] = useState([]);
   const [token, setToken] = useState(
